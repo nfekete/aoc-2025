@@ -4,8 +4,8 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
 
-val Pair<Int, Int>.range get() = if (first <= second) first..second else first downTo second
-val Pair<Long, Long>.range get() = if (first <= second) first..second else first downTo second
+val Pair<Int, Int>.range get() = if (first <= second) first..second else second..first
+val Pair<Long, Long>.range get() = if (first <= second) first..second else second..first
 val Pair<Double, Double>.range get() = if (first <= second) first..second else second..first
 infix fun <T : Comparable<T>> ClosedFloatingPointRange<T>.intersect(other: ClosedFloatingPointRange<T>) =
     if (start <= other.endInclusive && other.start <= endInclusive)
@@ -19,6 +19,30 @@ infix fun IntRange.intersect(other: IntRange) =
         maxOf(first, other.first)..minOf(last, other.last)
     else
         IntRange.EMPTY
+
+infix fun LongRange.intersect(other: LongRange) =
+    if (first <= other.last && other.first <= last)
+        maxOf(first, other.first)..minOf(last, other.last)
+    else
+        LongRange.EMPTY
+
+infix fun LongRange.touches(other: LongRange) =
+    first <= other.last + 1 && other.first <= last + 1
+
+infix fun LongRange.union(other: LongRange) =
+    if (touches(other))
+        setOf(minOf(first, other.first)..maxOf(last, other.last))
+    else
+        setOf(this, other)
+
+infix fun Set<LongRange>.union(other: LongRange): Set<LongRange> {
+    val (touchingIntervals, notTouchingIntervals) = groupBy { it touches other }
+        .let { (it[true]?.toSet() ?: emptySet()) to (it[false]?.toSet() ?: emptySet()) }
+    val newInterval = (touchingIntervals + setOf(other)).run { minOf { it.first }..maxOf { it.last } }
+    return notTouchingIntervals + setOf(newInterval)
+}
+
+val LongRange.size get() = last - first + 1
 
 infix fun IntRange.crossProduct(other: IntRange) =
     asSequence().flatMap { element -> other.map { otherElement -> element to otherElement } }
