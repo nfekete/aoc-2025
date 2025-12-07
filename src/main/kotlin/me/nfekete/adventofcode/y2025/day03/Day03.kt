@@ -1,6 +1,6 @@
 package me.nfekete.adventofcode.y2025.day03
 
-import me.nfekete.adventofcode.y2024.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.classpathFile
 
 private fun String.maxJoltage(joltageDigits: Int) =
     map { it.digitToInt() }.let { allDigits ->

@@ -1,6 +1,6 @@
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
-import me.nfekete.adventofcode.y2024.common.Grid2D.Coord
+import me.nfekete.adventofcode.y2025.common.Grid2D.Coord
 import java.util.PriorityQueue
 
 interface Graph<V, W>

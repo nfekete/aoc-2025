@@ -1,4 +1,4 @@
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
 fun Long.primeFactors() = sequence {
     val max = this@primeFactors

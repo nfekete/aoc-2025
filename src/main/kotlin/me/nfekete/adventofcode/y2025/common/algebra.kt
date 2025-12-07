@@ -1,4 +1,4 @@
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
 fun interface Semigroup<T> {
     fun T.combine(other: T): T

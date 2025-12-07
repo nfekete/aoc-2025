@@ -1,6 +1,6 @@
 package me.nfekete.adventofcode.y2025.day01
 
-import me.nfekete.adventofcode.y2024.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.classpathFile
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 

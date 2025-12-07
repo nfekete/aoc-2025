@@ -1,4 +1,4 @@
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
 import kotlin.math.abs
 

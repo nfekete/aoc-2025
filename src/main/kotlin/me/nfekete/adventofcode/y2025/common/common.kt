@@ -1,6 +1,6 @@
 @file:Suppress("unused")
 
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
 import java.io.BufferedReader
 import java.io.InputStreamReader

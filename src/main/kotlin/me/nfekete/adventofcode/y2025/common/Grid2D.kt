@@ -1,10 +1,10 @@
-package me.nfekete.adventofcode.y2024.common
+package me.nfekete.adventofcode.y2025.common
 
-import me.nfekete.adventofcode.y2024.common.Grid2D.CardinalDirection.Companion
-import me.nfekete.adventofcode.y2024.common.Grid2D.CardinalDirection.DOWN
-import me.nfekete.adventofcode.y2024.common.Grid2D.CardinalDirection.LEFT
-import me.nfekete.adventofcode.y2024.common.Grid2D.CardinalDirection.RIGHT
-import me.nfekete.adventofcode.y2024.common.Grid2D.CardinalDirection.UP
+import me.nfekete.adventofcode.y2025.common.Grid2D.CardinalDirection.Companion
+import me.nfekete.adventofcode.y2025.common.Grid2D.CardinalDirection.DOWN
+import me.nfekete.adventofcode.y2025.common.Grid2D.CardinalDirection.LEFT
+import me.nfekete.adventofcode.y2025.common.Grid2D.CardinalDirection.RIGHT
+import me.nfekete.adventofcode.y2025.common.Grid2D.CardinalDirection.UP
 import kotlin.math.abs
 import kotlin.math.absoluteValue
 import kotlin.test.fail

@@ -1,6 +1,6 @@
 package me.nfekete.adventofcode.y2025.day02
 
-import me.nfekete.adventofcode.y2024.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.classpathFile
 
 private fun Long.isSillyNumberP1(): Boolean =
     toString().let { it.length % 2 == 0 && it.take(it.length / 2) == it.drop(it.length / 2) }

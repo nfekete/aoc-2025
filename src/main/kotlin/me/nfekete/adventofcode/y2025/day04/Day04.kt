@@ -1,7 +1,7 @@
 package me.nfekete.adventofcode.y2025.day04
 
-import me.nfekete.adventofcode.y2024.common.Grid2D
-import me.nfekete.adventofcode.y2024.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.Grid2D
+import me.nfekete.adventofcode.y2025.common.classpathFile
 
 private fun main() {
     val grid = classpathFile("day04/input.txt")

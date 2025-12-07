@@ -1,12 +1,13 @@
 package me.nfekete.adventofcode.y2025.day05
 
-import me.nfekete.adventofcode.y2024.common.chunkBy
-import me.nfekete.adventofcode.y2024.common.classpathFile
-import me.nfekete.adventofcode.y2024.common.mapBoth
-import me.nfekete.adventofcode.y2024.common.range
-import me.nfekete.adventofcode.y2024.common.size
-import me.nfekete.adventofcode.y2024.common.splitByDelimiter
-import me.nfekete.adventofcode.y2024.common.union
+import me.nfekete.adventofcode.y2025.common.chunkBy
+import me.nfekete.adventofcode.y2025.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.mapBoth
+import me.nfekete.adventofcode.y2025.common.range
+import me.nfekete.adventofcode.y2025.common.size
+import me.nfekete.adventofcode.y2025.common.splitByDelimiter
+import me.nfekete.adventofcode.y2025.common.union
+import kotlin.time.measureTimedValue
 
 private fun main() {
     classpathFile("day05/input.txt")
@@ -20,8 +21,12 @@ private fun main() {
             ids.count { id -> intervals.any { interval -> id in interval } }
                 .also { println("Part1: $it") }
 
-            intervals.fold(emptySet<LongRange>()) { acc, longRange -> acc union longRange}
-                .sumOf { it.size }
-                .also { println("Part2: $it") }
+//            repeat(10000) {
+                measureTimedValue {
+                    intervals.fold(emptySet<LongRange>()) { acc, longRange -> acc union longRange }
+                        .sumOf { it.size }
+                }
+                    .also { println("Part2: $it") }
+//            }
         }
 }
