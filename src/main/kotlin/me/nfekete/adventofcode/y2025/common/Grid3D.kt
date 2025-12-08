@@ -31,6 +31,7 @@ data class Grid3D<T>(val map: Map<Coord, T>) {
         fun mapY(f: (Long) -> Long) = Coord(x, f(y), z)
         fun mapZ(f: (Long) -> Long) = Coord(x, y, f(z))
         val manhattan get() = abs(x) + abs(y) + abs(z)
+        val euclideanSquared get() = x * x + y * y + z * z
         override fun compareTo(other: Coord) =
             z.compareTo(other.z).takeIf { it != 0 } ?: y.compareTo(other.y).takeIf { it != 0 } ?: x.compareTo(other.x)
 
