@@ -4,6 +4,7 @@ import me.nfekete.adventofcode.y2025.common.Grid2D
 import me.nfekete.adventofcode.y2025.common.Grid2D.Coord
 import me.nfekete.adventofcode.y2025.common.Grid2D.Direction
 import me.nfekete.adventofcode.y2025.common.classpathFile
+import me.nfekete.adventofcode.y2025.common.memoized
 
 private fun part1(grid: Grid2D<Char>): Long {
     val start = grid.map.entries.single { (k, v) -> v == 'S' }.key
@@ -23,29 +24,31 @@ private fun part1(grid: Grid2D<Char>): Long {
     return recurse(start, mutableSetOf())
 }
 
-private fun part2(grid: Grid2D<Char>): Long {
-    val start = grid.map.entries.single { (k, v) -> v == 'S' }.key
+class Part2(private val grid: Grid2D<Char>) {
 
-    fun recurse(coord: Coord, visited: Set<Coord>): Long {
-        if (coord in visited) return 0
-        visited.add(coord)
+    val recurseM = ::recurse.memoized()
+    fun recurse(coord: Coord): Long {
         return when {
-            coord !in grid.coords -> 0
-            grid[coord] == '^' -> 1 + recurse(coord + Direction.LEFT.delta, visited) +
-                    recurse(coord + Direction.RIGHT.delta, visited)
+            coord !in grid.coords -> 1
+            grid[coord] == '^' -> recurseM(coord + Direction.LEFT.delta) +
+                    recurseM(coord + Direction.RIGHT.delta)
 
-            else -> recurse(coord + Direction.DOWN.delta, visited)
+            else -> recurseM(coord + Direction.DOWN.delta)
         }
     }
 
-    return recurse(start, mutableSetOf())
+
+    fun part2(): Long {
+        val start = grid.map.entries.single { (k, v) -> v == 'S' }.key
+        return recurseM(start)
+    }
 }
 
 private fun main() {
-    val grid = classpathFile("day07/sample.txt")
+    val grid = classpathFile("day07/input.txt")
         .readLines()
         .let { Grid2D.from(it) { true } }
 
     part1(grid).also { println("Part1: $it") }
-    part2(grid).also { println("Part2: $it") }
+    Part2(grid).part2().also { println("Part2: $it") }
 }
