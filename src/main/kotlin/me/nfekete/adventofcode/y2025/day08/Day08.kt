@@ -24,6 +24,25 @@ private class Part1(val boxes: List<Coord>, val nrMerges: Int) {
 
 }
 
+private class Part2(val boxes: List<Coord>) {
+    fun compute(): Long {
+        val distanceMap = (boxes crossProduct boxes)
+            .filter { (a, b) -> a < b }
+            .sortedBy { (a, b) -> (a - b).euclideanSquared }
+
+        val sets = boxes.associateWithTo(HashMap()) { HashSet<Coord>().apply { add(it) } }
+        for ((a, b) in distanceMap) {
+            val merged = sets[a]!!
+            merged.addAll(sets[b]!!)
+            if (merged.size == boxes.size)
+                return a.x * b.x
+            merged.forEach { sets[it] = merged }
+        }
+        error("")
+    }
+
+}
+
 private fun main() {
     val boxes = classpathFile("day08/input.txt")
         .readLines()
@@ -32,5 +51,7 @@ private fun main() {
         }
 
     Part1(boxes, nrMerges = 1000).compute()
-        .also { println(it) }
+        .also { println("Part1: $it") }
+    Part2(boxes).compute()
+        .also { println("Part2: $it") }
 }
