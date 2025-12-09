@@ -38,6 +38,8 @@ data class Grid2D<T>(val map: Map<Coord, T>) {
         fun mapY(f: (Long) -> Long) = Coord(x, f(y))
         val manhattan get() = abs(x) + abs(y)
         val absoluteValue get() = Coord(x.absoluteValue, y.absoluteValue)
+        val euclideanSquared get() = x * x + y * y
+        val area get() = x.absoluteValue * y.absoluteValue
         override fun compareTo(other: Coord) =
             y.compareTo(other.y).takeIf { it != 0 } ?: x.compareTo(other.x)
 
