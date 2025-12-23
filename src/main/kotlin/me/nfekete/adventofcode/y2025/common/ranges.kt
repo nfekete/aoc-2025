@@ -20,6 +20,11 @@ infix fun IntRange.intersect(other: IntRange) =
     else
         IntRange.EMPTY
 
+fun LongRange.removeBoundaries() = LongRange(first + 1, last - 1)
+
+infix fun LongRange.intersects(other: LongRange) =
+    first <= other.last && other.first <= last
+
 infix fun LongRange.intersect(other: LongRange) =
     if (first <= other.last && other.first <= last)
         maxOf(first, other.first)..minOf(last, other.last)
