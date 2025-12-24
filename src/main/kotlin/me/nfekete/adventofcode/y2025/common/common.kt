@@ -76,7 +76,7 @@ val <T> List<List<T>>.pretty get() = joinToString("\n") { it.joinToString("") }
 fun <P, R> ((P) -> R).memoized(cache: MutableMap<P, R> = mutableMapOf()): (P) -> R =
     fun(p: P) =
         if (p in cache) {
-            cache[p]!!
+            cache.getValue(p)
         } else {
             val r = this(p)
             cache[p] = r
